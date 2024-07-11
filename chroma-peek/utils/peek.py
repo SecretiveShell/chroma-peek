@@ -18,6 +18,10 @@ class ChromaPeek:
     def get_collection_data(self, collection_name, dataframe=False):
         data = self.client.get_collection(name=collection_name).get()
         if dataframe:
+            data = {
+                "ids" : data["ids"],
+                "documents" : data["documents"],
+            }
             return pd.DataFrame(data)
         return data
     
